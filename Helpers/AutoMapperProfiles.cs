@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using InCar.DTOs;
+using InCar.Entidades;
 
 namespace MedFlix.Helpers
 {
@@ -7,11 +9,29 @@ namespace MedFlix.Helpers
 
     public AutoMapperProfiles()
     {
-      //CreateMap<Genero,GeneroDTO >().ReverseMap();
-      //CreateMap<GeneroCreacionDTO, Genero>();
-      //CreateMap<Actor, ActorDTO>().ReverseMap();
-      //CreateMap<ActorCreacionDTO, Actor>();
+      CreateMap<Detalle, DetalleDTO>().ReverseMap();
+      CreateMap<DetalleCreacionDTO, DetalleDTO>();
 
+      CreateMap<Historial, HistorialDTO>().ReverseMap();
+      CreateMap<HistorialCreacionDTO, HistorialDTO>();
+
+      CreateMap<ImagenVehiculo, ImagenVehiculoDTO>().ReverseMap();
+      CreateMap<ImagenVehiculoCreacionDTO, ImagenVehiculoDTO>();
+
+      CreateMap<Marca, MarcaDTO>().ReverseMap();
+      CreateMap<MarcaCreacionDTO, MarcaDTO>();
+
+      CreateMap<Procedimiento, ProcedimientoDTO>().ReverseMap();
+      CreateMap<ProcedimientoCreacionDTO, ProcedimientoDTO>();
+
+      CreateMap<TipoDocumento, TipoDocumentoDTO>().ReverseMap();
+      CreateMap<TipoDocumentoCreacionDTO, TipoDocumentoDTO>();
+
+      CreateMap<TipoVehiculo, TipoVehiculoDTO>().ReverseMap();
+      CreateMap<TipoVehiculoCreacionDTO, TipoVehiculoDTO>();
+
+      CreateMap<Vehiculo, VehiculoDTO>().ReverseMap();
+      CreateMap<VehiculoCreacionDTO, VehiculoDTO>();
     }
   }
 }

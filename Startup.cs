@@ -1,4 +1,5 @@
 ﻿using InCar.Data;
+using InCar.Servicios;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -53,7 +54,7 @@ namespace InCar
 
       services.AddSwaggerGen(c =>
       {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiMedFlix", Version = "v1" });
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "InCar", Version = "v1" });
 
         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
@@ -79,9 +80,9 @@ namespace InCar
          });
       });
 
-      //services.AddIdentity<IdentityUser, IdentityRole>()
-      //        .AddEntityFrameworkStores<ApplicationDbContext>()
-      //        .AddDefaultTokenProviders();
+      services.AddIdentity<IdentityUser, IdentityRole>()
+              .AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddDefaultTokenProviders();
 
       services.AddAuthorization(opciones =>
 
