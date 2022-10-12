@@ -3,6 +3,7 @@ using InCar.Data;
 using InCar.DTOs;
 using InCar.Entidades;
 using InCar.Servicios.IlogService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +24,7 @@ namespace InCar.Controllers
       this._logService = logService;
     }
 
-    [HttpGet("[action]")]
+    [HttpGet("[action]"), Authorize]
     public async Task<ActionResult<List<DetalleDTO>>> ObtenerDetalle()
     {
       try
