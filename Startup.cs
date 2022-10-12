@@ -1,5 +1,6 @@
 ﻿using InCar.Data;
 using InCar.Servicios;
+using InCar.Servicios.IlogService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,8 @@ namespace InCar
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
-
+      services.AddTransient<ILogService, LogService>();
+      services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivosLocal>();
       services.AddAutoMapper(typeof(Startup));
 
       services.AddHttpContextAccessor();
@@ -101,7 +103,7 @@ namespace InCar
 
       }
       app.UseSwagger();
-      app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiMedFlix v1"));
+      app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "InCar v1"));
 
       app.UseHttpsRedirection();
 

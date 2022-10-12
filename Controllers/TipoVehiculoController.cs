@@ -73,7 +73,7 @@ namespace InCar.Controllers
         }
 
         [HttpPut("[action]/{id:int}")]
-        public async Task<ActionResult> ActualizarHotel(TipoVehiculo tipovehiculo, int id)
+        public async Task<ActionResult> ActualizarTipoVehiculo(TipoVehiculo tipovehiculo, int id)
         {
             try
             {
@@ -104,13 +104,13 @@ namespace InCar.Controllers
         {
             try
             {
-                var hotel = await _context.TipoVehiculo.FirstOrDefaultAsync(x => x.Id == id);
+                var tipoVehiculo = await _context.TipoVehiculo.FirstOrDefaultAsync(x => x.Id == id);
 
-                if (hotel == null)
+                if (tipoVehiculo == null)
                 {
                     return NotFound();
                 }
-                _context.Remove(hotel);
+                _context.Remove(tipoVehiculo);
                 await _context.SaveChangesAsync();
                 return NoContent();
             }

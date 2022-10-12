@@ -1,6 +1,4 @@
-﻿using InCar.Entidades;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace InCar.DTOs
 {
@@ -9,11 +7,7 @@ namespace InCar.DTOs
     public int Id { get; set; }
     [Required(ErrorMessage = "El campo {0} es requerido")]
     [StringLength(20)]
-    public string Marca { get; set; }
-
-    //relacion uno a muchos con Vehiculo
-    [JsonIgnore]
-    public List<Vehiculo> Vehiculos { get; set; }
+    public string Tipo { get; set; }
   }
 }
 

@@ -9,7 +9,7 @@ using InCar.Servicios.IlogService;
 namespace InCar.Controllers
 {
   [ApiController]
-  [Route("api/TipoDocumento")]
+  [Route("api/tipodocumento")]
   public class TipoDocumentoController : Controller
   {
     private readonly IMapper _mapper;

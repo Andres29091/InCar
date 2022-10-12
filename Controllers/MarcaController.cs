@@ -73,7 +73,7 @@ namespace InCar.Controllers
     }
 
     [HttpPut("[action]/{id:int}")]
-    public async Task<ActionResult> ActualizarHotel(Marca marca, int id)
+    public async Task<ActionResult> ActualizarMarca(Marca marca, int id)
     {
       try
       {

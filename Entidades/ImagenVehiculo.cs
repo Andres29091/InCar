@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace InCar.Entidades
 {
@@ -8,5 +9,7 @@ namespace InCar.Entidades
     [Required(ErrorMessage = "El campo {0} es requerido")]
     [StringLength(200)]
     public string Foto { get; set; }
+    [JsonIgnore]
+    public Vehiculo Vehiculo { get; set; }
   }
 }
