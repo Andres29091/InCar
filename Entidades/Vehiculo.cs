@@ -1,10 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InCar.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace InCar.Entidades
 {
   public class Vehiculo
   {
     public int Id { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es requerido")]
+    public int CodigoMarca { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es requerido")]
+    public int CodigoTipoVehiculo { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es requerido")]
+    public int CodigoUsuario { get; set; }
 
     [Required(ErrorMessage = "El campo {0} es requerido")]
     [StringLength(10)]
@@ -17,16 +28,26 @@ namespace InCar.Entidades
     public DateTime? FechaFabricacion { get; set; }
 
     [Required(ErrorMessage = "El campo {0} es requerido")]
-    [StringLength(10)]
+    [StringLength(20)]
     public string Color { get; set; }
 
     [Required(ErrorMessage = "El campo {0} es requerido")]
     [StringLength(10)]
     public string Precio { get; set; }
 
-    //propiedades de navegacion a las tablas relacionadas
+    [JsonIgnore]
     public TipoVehiculo TipoVehiculo { get; set; }
+
+    [JsonIgnore]
     public Marca Marca { get; set; }
 
+    [JsonIgnore]
+    public List<Historial> Historial { get; set; }
+    
+    [JsonIgnore]
+    public List<ImagenVehiculo> ImagenVehiculo { get; set; }
+
+    [JsonIgnore]
+    public Usuario Usuario { get; set; }
   }
 }

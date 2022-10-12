@@ -6,9 +6,24 @@ namespace InCar.Entidades
   public class Detalle
   {
     public int Id { get; set; }
-    [StringLength(200)]
+
+    [Required(ErrorMessage = "El campo {0} es requerido")]
+    public int CodigoDetalle { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es requerido")]
+    public int CodigoProcedimiento { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es requerido")]
+    public int CodigoHistorial { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es requerido")]
+    [StringLength(300)]
     public string Descripcion { get; set; }
+
     [JsonIgnore]
     public Procedimiento Procedimiento { get; set; }
+
+    [JsonIgnore]
+    public Historial Historial { get; set; }
   }
 }

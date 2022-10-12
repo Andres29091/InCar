@@ -32,91 +32,91 @@ namespace InCar.Controllers
       }
       catch (Exception ex)
       {
-        _logService.WriteEventLog("ObtenerMarca", GetType().Name, ex.Message, "error");
+        _logService.WriteEventLog("ObtenerProcedimiento", GetType().Name, ex.Message, "error");
         return BadRequest();
       }
     }
 
     [HttpGet("[action]/{id:int}")]
-    public async Task<ActionResult<MarcaDTO>> ObtenerMarcaPorId([FromRoute] int id)
+    public async Task<ActionResult<ProcedimientoDTO>> ObtenerProcedimientoPorId([FromRoute] int id)
     {
       try
       {
-        var marca = await _context.Marca.FirstOrDefaultAsync(x => x.Id == id);
-        if (marca == null)
+        var procedimiento = await _context.Procedimiento.FirstOrDefaultAsync(x => x.Id == id);
+        if (procedimiento == null)
         {
           return NotFound();
         }
-        return _mapper.Map<MarcaDTO>(marca);
+        return _mapper.Map<ProcedimientoDTO>(procedimiento);
       }
       catch (Exception ex)
       {
-        _logService.WriteEventLog("ObtenerMarcaPorId", GetType().Name, ex.Message, "error");
+        _logService.WriteEventLog("ObtenerProcedimientoPorId", GetType().Name, ex.Message, "error");
         return BadRequest();
       }
     }
 
     [HttpPost("[action]")]
-    public async Task<ActionResult> CrearMarca([FromForm] MarcaCreacionDTO marcaCreacionDTO)
+    public async Task<ActionResult> CrearProcedimiento([FromForm] ProcedimientoCreacionDTO procedimientoCreacionDTO)
     {
       try
       {
-        _context.Add(_mapper.Map<Marca>(marcaCreacionDTO));
+        _context.Add(_mapper.Map<Procedimiento>(procedimientoCreacionDTO));
         await _context.SaveChangesAsync();
         return NoContent();
       }
       catch (Exception ex)
       {
-        _logService.WriteEventLog("CrearMarca", GetType().Name, ex.Message, "error");
+        _logService.WriteEventLog("CrearProcedimiento", GetType().Name, ex.Message, "error");
         return BadRequest();
       }
     }
 
     [HttpPut("[action]/{id:int}")]
-    public async Task<ActionResult> ActualizarMarca(Marca marca, int id)
+    public async Task<ActionResult> ActualizarProcedimiento(Procedimiento procedimiento, int id)
     {
       try
       {
-        if (marca.Id != id)
+        if (procedimiento.Id != id)
         {
           return BadRequest("El registro no existe");
         }
-        var existe = await _context.Marca.AnyAsync(x => x.Id == id);
+        var existe = await _context.Procedimiento.AnyAsync(x => x.Id == id);
 
         if (!existe)
         {
           return NotFound();
         }
 
-        _context.Update(marca);
+        _context.Update(procedimiento);
         await _context.SaveChangesAsync();
         return Ok();
       }
       catch (Exception ex)
       {
-        _logService.WriteEventLog("ActualizarMarca", GetType().Name, ex.Message, "error");
+        _logService.WriteEventLog("ActualizarProcedimiento", GetType().Name, ex.Message, "error");
         return BadRequest();
       }
     }
 
     [HttpDelete("[action]/{id:int}")]
-    public async Task<ActionResult> EliminarMarca([FromRoute] int id)
+    public async Task<ActionResult> EliminarProcedimiento([FromRoute] int id)
     {
       try
       {
-        var hotel = await _context.Marca.FirstOrDefaultAsync(x => x.Id == id);
+        var procedimiento = await _context.Procedimiento.FirstOrDefaultAsync(x => x.Id == id);
 
-        if (hotel == null)
+        if (procedimiento == null)
         {
           return NotFound();
         }
-        _context.Remove(hotel);
+        _context.Remove(procedimiento);
         await _context.SaveChangesAsync();
         return NoContent();
       }
       catch (Exception ex)
       {
-        _logService.WriteEventLog("EliminarMarca", GetType().Name, ex.Message, "error");
+        _logService.WriteEventLog("EliminarProcedimiento", GetType().Name, ex.Message, "error");
         return BadRequest();
       }
     }

@@ -1,20 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace InCar.Entidades
+namespace InCar.Models
 {
-  public class ImagenVehiculo
+  public class UsuarioRol
   {
     public int Id { get; set; }
 
-    [Required(ErrorMessage = "El campo {0} es requerido")]
-    public int CodigoVehiculo { get; set; }
 
     [Required(ErrorMessage = "El campo {0} es requerido")]
-    [StringLength(200)]
-    public string Foto { get; set; }
+    public int CodigoRol { get; set; }
+
+    [Required(ErrorMessage = "El campo {0} es requerido")]
+    public int CodigoUsuario { get; set; }
 
     [JsonIgnore]
-    public Vehiculo Vehiculo { get; set; }
+    public Usuario Usuario { get; set; }
+
+    [JsonIgnore]
+    public Rol Rol { get; set; }
+
   }
 }

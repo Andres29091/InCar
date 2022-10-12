@@ -42,7 +42,7 @@ namespace InCar.Controllers
     {
       try
       {
-        var historial = await _context.Detalle.FirstOrDefaultAsync(x => x.Id == id);
+        var historial = await _context.Historial.FirstOrDefaultAsync(x => x.Id == id);
         if (historial == null)
         {
           return NotFound();

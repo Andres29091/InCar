@@ -2,7 +2,7 @@
 using InCar.DTOs;
 using InCar.Entidades;
 
-namespace MedFlix.Helpers
+namespace InCar.Helpers
 {
   public class AutoMapperProfiles : Profile
   {
