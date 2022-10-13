@@ -5,6 +5,8 @@ using InCar.Data;
 using InCar.DTOs;
 using InCar.Entidades;
 using InCar.Servicios.IlogService;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InCar.Controllers
 {
@@ -24,6 +26,7 @@ namespace InCar.Controllers
     }
 
     [HttpGet("[action]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult<List<MarcaDTO>>> ObtenerMarca()
     {
       try
@@ -38,6 +41,7 @@ namespace InCar.Controllers
     }
 
     [HttpGet("[action]/{id:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult<MarcaDTO>> ObtenerMarcaPorId([FromRoute] int id)
     {
       try
@@ -57,6 +61,7 @@ namespace InCar.Controllers
     }
 
     [HttpPost("[action]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult> CrearMarca([FromForm] MarcaCreacionDTO marcaCreacionDTO)
     {
       try
@@ -73,6 +78,7 @@ namespace InCar.Controllers
     }
 
     [HttpPut("[action]/{id:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult> ActualizarMarca(Marca marca, int id)
     {
       try
@@ -100,6 +106,7 @@ namespace InCar.Controllers
     }
 
     [HttpDelete("[action]/{id:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult> EliminarMarca([FromRoute] int id)
     {
       try

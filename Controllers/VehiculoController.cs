@@ -3,6 +3,8 @@ using InCar.Data;
 using InCar.DTOs;
 using InCar.Entidades;
 using InCar.Servicios.IlogService;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +26,7 @@ namespace InCar.Controllers
     }
 
     [HttpGet("[action]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult<List<VehiculoDTO>>> ObtenerVehiculo()
     {
       try
@@ -38,6 +41,7 @@ namespace InCar.Controllers
     }
 
     [HttpGet("[action]/{id:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult<VehiculoDTO>> ObtenerVehiculoPorId([FromRoute] int id)
     {
       try
@@ -57,6 +61,7 @@ namespace InCar.Controllers
     }
 
     [HttpPost("[action]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult> CrearVehiculo([FromForm] VehiculoCreacionDTO vehiculoCreacionDTO)
     {
       try
@@ -73,6 +78,7 @@ namespace InCar.Controllers
     }
 
     [HttpPut("[action]/{id:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult> ActualizarHotel(Vehiculo vehiculo, int id)
     {
       try
@@ -100,6 +106,7 @@ namespace InCar.Controllers
     }
 
     [HttpDelete("[action]/{id:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public async Task<ActionResult> EliminarVehiculo([FromRoute] int id)
     {
       try
