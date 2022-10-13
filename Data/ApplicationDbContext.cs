@@ -1,10 +1,11 @@
 ﻿using InCar.Entidades;
 using InCar.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InCar.Data
 {
-  public class ApplicationDbContext : DbContext
+  public class ApplicationDbContext : IdentityDbContext
   {
 
     public ApplicationDbContext(DbContextOptions options) : base(options)
@@ -21,7 +22,5 @@ namespace InCar.Data
     public DbSet<TipoVehiculo> TipoVehiculo { get; set; }
     public DbSet<TipoDocumento> TipoDocumento { get; set; }
     public DbSet<Usuario> Usuario { get; set; }
-    public DbSet<Rol> Rol { get; set; }
-    public DbSet<UsuarioRol> UsuarioRol { get; set; }
   }
 }
