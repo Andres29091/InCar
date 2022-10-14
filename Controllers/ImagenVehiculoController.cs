@@ -2,6 +2,7 @@
 using InCar.Data;
 using InCar.DTOs;
 using InCar.Entidades;
+using InCar.Servicios;
 using InCar.Servicios.IlogService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -17,12 +18,15 @@ namespace InCar.Controllers
     private readonly IMapper _mapper;
     private readonly ApplicationDbContext _context;
     private readonly ILogService _logService;
+    private readonly IAlmacenadorArchivos _almacenadorArchivos;
+    private readonly string contenedor = "Files";
 
-    public ImagenVehiculoController(IMapper mapper, ApplicationDbContext context, ILogService logService)
+    public ImagenVehiculoController(IMapper mapper, ApplicationDbContext context, ILogService logService, IAlmacenadorArchivos almacenadorArchivos)
     {
       this._mapper = mapper;
       this._context = context;
       this._logService = logService;
+      this._almacenadorArchivos = almacenadorArchivos;
     }
 
     [HttpGet("[action]")]
@@ -42,7 +46,7 @@ namespace InCar.Controllers
 
     [HttpGet("[action]/{id:int}")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
-    public async Task<ActionResult<ImagenVehiculo>> ObtenerImagenVehiculoPorId([FromRoute] int id)
+    public async Task<ActionResult<ImagenVehiculoDTO>> ObtenerImagenVehiculoPorId([FromRoute] int id)
     {
       try
       {
@@ -51,7 +55,7 @@ namespace InCar.Controllers
         {
           return NotFound();
         }
-        return _mapper.Map<ImagenVehiculo>(imagenvehiculo);
+        return _mapper.Map<ImagenVehiculoDTO>(imagenvehiculo);
       }
       catch (Exception ex)
       {
@@ -62,11 +66,16 @@ namespace InCar.Controllers
 
     [HttpPost("[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
-    public async Task<ActionResult> CrearImagenVehiculo([FromForm] ImagenVehiculoDTO imagenVehiculo)
+    public async Task<ActionResult> CrearImagenVehiculo([FromForm] ImagenVehiculoDTO imagenVehiculoDTO)
     {
       try
       {
-        _context.Add(_mapper.Map<ImagenVehiculo>(imagenVehiculo));
+        var archivos = _mapper.Map<ImagenVehiculo>(imagenVehiculoDTO);
+        if (imagenVehiculoDTO.Foto != null)
+        {
+          archivos.Foto = await _almacenadorArchivos.GuardarArchivo(contenedor, imagenVehiculoDTO.Foto);
+        }
+        _context.Add(archivos);
         await _context.SaveChangesAsync();
         return NoContent();
       }
