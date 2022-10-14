@@ -62,7 +62,7 @@ namespace InCar.Controllers
 
     [HttpPost("[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
-    public async Task<ActionResult> CrearTipoVehiculo([FromForm] TipoVehiculoCreacionDTO tipovehiculoCreacionDTO)
+    public async Task<ActionResult> CrearTipoVehiculo([FromBody] TipoVehiculoCreacionDTO tipovehiculoCreacionDTO)
     {
       try
       {

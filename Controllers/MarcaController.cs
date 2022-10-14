@@ -62,7 +62,7 @@ namespace InCar.Controllers
 
     [HttpPost("[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
-    public async Task<ActionResult> CrearMarca([FromForm] MarcaCreacionDTO marcaCreacionDTO)
+    public async Task<ActionResult> CrearMarca([FromBody] MarcaCreacionDTO marcaCreacionDTO)
     {
       try
       {

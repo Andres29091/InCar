@@ -62,7 +62,7 @@ namespace InCar.Controllers
 
     [HttpPost("[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
-    public async Task<ActionResult> CrearProcedimiento([FromForm] ProcedimientoCreacionDTO procedimientoCreacionDTO)
+    public async Task<ActionResult> CrearProcedimiento([FromBody] ProcedimientoCreacionDTO procedimientoCreacionDTO)
     {
       try
       {

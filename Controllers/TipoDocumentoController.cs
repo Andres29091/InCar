@@ -35,7 +35,7 @@ namespace InCar.Controllers
       }
       catch (Exception ex)
       {
-        _logService.WriteEventLog("TipoDocumento", GetType().Name, ex.Message, "error");
+        _logService.WriteEventLog("ObtenerTipoDocumento", GetType().Name, ex.Message, "error");
         return BadRequest();
       }
     }
@@ -62,7 +62,7 @@ namespace InCar.Controllers
 
     [HttpPost("[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
-    public async Task<ActionResult> TipoDocumentoSucursal([FromForm] TipoDocumentoCreacionDTO tipoDocumentoCreacionDTO)
+    public async Task<ActionResult> CrearTipoDocumento([FromBody] TipoDocumentoCreacionDTO tipoDocumentoCreacionDTO)
     {
       try
       {

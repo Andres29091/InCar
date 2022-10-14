@@ -10,28 +10,28 @@ namespace InCar.Helpers
     public AutoMapperProfiles()
     {
       CreateMap<Detalle, DetalleDTO>().ReverseMap();
-      CreateMap<DetalleCreacionDTO, DetalleDTO>();
+      CreateMap<DetalleCreacionDTO, Detalle>();
 
       CreateMap<Historial, HistorialDTO>().ReverseMap();
-      CreateMap<HistorialCreacionDTO, HistorialDTO>();
+      CreateMap<HistorialCreacionDTO, Historial>();
 
       CreateMap<ImagenVehiculo, ImagenVehiculoDTO>().ReverseMap();
-      CreateMap<ImagenVehiculoCreacionDTO, ImagenVehiculoDTO>();
+      CreateMap<ImagenVehiculoCreacionDTO, ImagenVehiculo>();
 
       CreateMap<Marca, MarcaDTO>().ReverseMap();
-      CreateMap<MarcaCreacionDTO, MarcaDTO>();
+      CreateMap<MarcaCreacionDTO, Marca>();
 
       CreateMap<Procedimiento, ProcedimientoDTO>().ReverseMap();
-      CreateMap<ProcedimientoCreacionDTO, ProcedimientoDTO>();
+      CreateMap<ProcedimientoCreacionDTO, Procedimiento>();
 
       CreateMap<TipoDocumento, TipoDocumentoDTO>().ReverseMap();
-      CreateMap<TipoDocumentoCreacionDTO, TipoDocumentoDTO>();
+      CreateMap<TipoDocumentoCreacionDTO, TipoDocumento>();
 
       CreateMap<TipoVehiculo, TipoVehiculoDTO>().ReverseMap();
-      CreateMap<TipoVehiculoCreacionDTO, TipoVehiculoDTO>();
+      CreateMap<TipoVehiculoCreacionDTO, TipoVehiculo>();
 
       CreateMap<Vehiculo, VehiculoDTO>().ReverseMap();
-      CreateMap<VehiculoCreacionDTO, VehiculoDTO>();
+      CreateMap<VehiculoCreacionDTO, Vehiculo>();
     }
   }
 }
