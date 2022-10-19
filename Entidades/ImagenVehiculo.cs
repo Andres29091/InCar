@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AutoMapper.Configuration.Annotations;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace InCar.Entidades
@@ -15,6 +17,7 @@ namespace InCar.Entidades
     public string Foto { get; set; }
 
     [JsonIgnore]
+    [NotMapped]
     public Vehiculo Vehiculo { get; set; }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using InCar.Entidades;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace InCar.DTOs
@@ -11,9 +12,10 @@ namespace InCar.DTOs
 
     [Required(ErrorMessage = "El campo {0} es requerido")]
     [StringLength(200)]
-    public string Foto { get; set; }
+    public IFormFile Foto { get; set; }
 
     [JsonIgnore]
+    [NotMapped]
     public Vehiculo Vehiculo { get; set; }
   }
 }

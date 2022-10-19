@@ -66,14 +66,14 @@ namespace InCar.Controllers
 
     [HttpPost("[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
-    public async Task<ActionResult> CrearImagenVehiculo([FromForm] ImagenVehiculoDTO imagenVehiculoDTO)
+    public async Task<ActionResult> CrearImagenVehiculo([FromForm] ImagenVehiculoCreacionDTO imagenVehiculoCreacionDTO)
     {
       try
       {
-        var archivos = _mapper.Map<ImagenVehiculo>(imagenVehiculoDTO);
-        if (imagenVehiculoDTO.Foto != null)
+        var archivos = _mapper.Map<ImagenVehiculo>(imagenVehiculoCreacionDTO);
+        if (imagenVehiculoCreacionDTO.Foto != null)
         {
-          archivos.Foto = await _almacenadorArchivos.GuardarArchivo(contenedor, imagenVehiculoDTO.Foto);
+          archivos.Foto = await _almacenadorArchivos.GuardarArchivo(contenedor, imagenVehiculoCreacionDTO.Foto);
         }
         _context.Add(archivos);
         await _context.SaveChangesAsync();

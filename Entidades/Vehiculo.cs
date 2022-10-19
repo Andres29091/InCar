@@ -1,5 +1,6 @@
 ﻿using InCar.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace InCar.Entidades
@@ -36,18 +37,23 @@ namespace InCar.Entidades
     public string Precio { get; set; }
 
     [JsonIgnore]
+    [NotMapped]
     public TipoVehiculo TipoVehiculo { get; set; }
 
     [JsonIgnore]
+    [NotMapped]
     public Marca Marca { get; set; }
 
     [JsonIgnore]
+    [NotMapped]
     public List<Historial> Historial { get; set; }
     
     [JsonIgnore]
+    [NotMapped]
     public List<ImagenVehiculo> ImagenVehiculo { get; set; }
 
     [JsonIgnore]
+    [NotMapped]
     public Usuario Usuario { get; set; }
   }
 }
